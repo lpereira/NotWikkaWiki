@@ -60,8 +60,8 @@ if ($cattag = $_GET['wakka'])	#312 (only files action uses POST for wakka)
 		sort($list);
 		while (list($key, $val) = each($list)) {
 			if ($count == $col & !$compact)  { $str .= "</tr><tr>"; $count=0; }
-			if (!$compact) $str .= '<td>'.$this->Format('[['.$val.']]').'</td>';
-			else $str .= '<li>'.$this->Format('[['.$val.' '.preg_replace( "/Category/", "",$val).']]').'</li>';
+			if (!$compact) $str .= '<td>'.$this->Format('[['.$val.'|'.$val.']]').'</td>';
+			else $str .= '<li>'.$this->Format('[['.$val.'|'.preg_replace( "/Category/", "",$val).']]').'</li>';
 			$count++;
 			$pagecount++;
 		}
