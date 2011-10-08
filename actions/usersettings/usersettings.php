@@ -31,6 +31,7 @@
 if (!defined('PASSWORD_MIN_LENGTH')) define('PASSWORD_MIN_LENGTH', "5");
 if (!defined('VALID_EMAIL_PATTERN')) define('VALID_EMAIL_PATTERN', "/^.+?\@.+?\..+$/"); //TODO: Use central regex library
 if (!defined('SPAM_EMAIL_PATTERN')) define('SPAM_EMAIL_PATTERN', "/^[a-zA-Z]+\_[a-zA-Z]+\@gmail\.com$/");
+if (!defined('SPAM_USER_PATTERN')) define('SPAM_USER_PATTERN', '/^[A-Z][a-z]+[A-Z]$/');
 if (!defined('REVISION_DISPLAY_LIMIT_MIN')) define('REVISION_DISPLAY_LIMIT_MIN', "0"); // 0 means no limit, 1 is the minimum number of revisions
 if (!defined('REVISION_DISPLAY_LIMIT_MAX')) define('REVISION_DISPLAY_LIMIT_MAX', "20"); // keep this value within a reasonable limit to avoid an unnecessary long lists
 if (!defined('RECENTCHANGES_DISPLAY_LIMIT_MIN')) define('RECENTCHANGES_DISPLAY_LIMIT_MIN', "0"); // 0 means no limit, 1 is the minimum number of changes
@@ -475,6 +476,11 @@ else
 			case (preg_match(SPAM_EMAIL_PATTERN, $email)):
 				$error = T_("User already exists.");
 				$username_highlight = 'class="highlight"';
+				break;
+			case (preg_match(SPAM_USER_PATTERN, $name)):
+				$error = T_("Passwords don't match.");
+				$password_highlight = 'class="highlight"';
+				$password_confirm_highlight = 'class="highlight"';
 				break;
 			case (!preg_match(VALID_EMAIL_PATTERN, $email)):
 				$error = T_("That doesn't quite look like an email address.");
