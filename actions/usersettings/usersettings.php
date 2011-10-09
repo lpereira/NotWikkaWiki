@@ -482,6 +482,10 @@ else
 				$password_highlight = 'class="highlight"';
 				$password_confirm_highlight = 'class="highlight"';
 				break;
+                        case (!checkdnsrr(array_pop(explode("@", $email)), "MX")):
+                                $error = T_("Invalid email address.");
+                                $email_highlight = 'class="highlight"';
+                                break;
 			case (!preg_match(VALID_EMAIL_PATTERN, $email)):
 				$error = T_("That doesn't quite look like an email address.");
 				$email_highlight = 'class="highlight"';
